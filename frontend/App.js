@@ -14,7 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
-import photoUrls from "./reducers/photoUrls.reducer";
+import photos from "./reducers/photos.reducer";
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +50,7 @@ function BottomNav() {
 
 const Stack = createStackNavigator();
 
-const store = createStore(combineReducers({ photoUrls }));
+const store = createStore(combineReducers({ photos }));
 
 export default function App() {
   return (

@@ -92,6 +92,7 @@ export default function SnapScreen() {
                   let photo = await cameraRef.takePictureAsync({
                     quality: 0.7,
                   });
+                  console.log(photo);
                   let data = new FormData();
                   data.append("photo", {
                     uri: photo.uri,
@@ -99,13 +100,13 @@ export default function SnapScreen() {
                     name: "random.jpg",
                   });
 
-                  fetch("http://192.168.254.13:3000/upload", {
+                  fetch("http://192.168.254.9:3000/upload", {
                     method: "POST",
                     body: data,
                   })
                     .then((response) => response.json())
                     .then((data) =>
-                      dispatch({ type: "addPhotoUrl", url: data.result.url })
+                      dispatch({ type: "addPhoto", photo: data.result })
                     );
 
                   setVisible(false);

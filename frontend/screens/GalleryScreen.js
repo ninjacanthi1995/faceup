@@ -1,45 +1,25 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { Card, Text } from "react-native-elements";
+import { Card, Text, Badge } from "react-native-elements";
 import { useSelector } from "react-redux";
 
-// const users = [
-//   {
-//     img: require("../assets/picture-1.jpg"),
-//     descriptions: ["homme", "70 ans", "barbe", "joyeux!", "cheveux gris"],
-//   },
-//   {
-//     img: require("../assets/picture-2.jpg"),
-//     descriptions: ["femme", "lunette", "31 ans", "joyeux!", "cheveux chatain"],
-//   },
-//   {
-//     img: require("../assets/picture-3.jpg"),
-//     descriptions: ["femme", "lunette", "31 ans", "joyeux!", "cheveux chatain"],
-//   },
-//   {
-//     img: require("../assets/picture-4.jpg"),
-//     descriptions: ["femme", "lunette", "31 ans", "joyeux!", "cheveux chatain"],
-//   },
-// ];
-
 export default function GalleryScreen() {
-  const photoUrls = useSelector(state => state.photoUrls);
+  const photos = useSelector((state) => state.photos);
 
   return (
     <ScrollView containerStyle={styles.container}>
       <Text h2 style={styles.title}>
         John's Galerry
       </Text>
-      {photoUrls.map((url, i) => (
+      {photos.map((photo, i) => (
         <Card key={i} containerStyle={{ padding: 0, paddingBottom: 10 }}>
           <Card.Image
-            source={{uri: url}}
+            source={{ uri: photo.url }}
             resizeMode="cover"
             style={styles.image}
           />
-          {/* {user.descriptions.map((desc, j) => (
-            <Badge key={j} value={desc} status="success" />
-          ))} */}
+          <Badge value={photo.gender} status="success" />
+          <Badge value={photo.age} status="success" />
         </Card>
       ))}
     </ScrollView>
@@ -56,7 +36,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   image: {
-    height: 180,
+    height: 600,
     marginBottom: 10,
   },
 });
